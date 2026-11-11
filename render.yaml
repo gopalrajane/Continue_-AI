@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: continuai
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --workers 1 --threads 4 --timeout 120
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      # Optional: add ANTHROPIC_API_KEY in the Render dashboard to use Claude for extraction
